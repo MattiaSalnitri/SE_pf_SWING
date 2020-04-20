@@ -12,6 +12,8 @@ Publisher: O'Reilly
 //good, some are not!
 //
 
+import it.polimi.deib.mattiaSalnitri.swing_06_threads.progressBar.Application;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,7 +34,16 @@ public class InvokeExample {
     static InvokeExample invokeExample;
 
     public static void main(String[] args) {
-        invokeExample = new InvokeExample();
+
+        //adds the creation of frame in the EDT
+        SwingUtilities.invokeLater(new Runnable() {//implements a thread with runnable
+            @Override
+            public void run()
+            {
+                invokeExample = new InvokeExample();
+            }
+        });
+
     }
 
     public InvokeExample()
@@ -64,7 +75,6 @@ public class InvokeExample {
                 resultLabel.setText("Working . . .");
                 setEnabled(false);
 
-                //create the progressBar
                 blankWorker = new BlankWorker_doNothing(resultLabel, invokeExample);
 
                 blankWorker.execute();

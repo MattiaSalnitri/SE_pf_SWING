@@ -62,33 +62,33 @@ public class GridBagLayoutExample {
         gbc2.gridy = 0;
         //set spacing
         gbc2.insets = new Insets(5, 5, 5, 115); // top, left, bottom, right
-        panel.add(jb2, gbc2); //gdc reset
+        panel.add(jb2, gbc2);
 
         GridBagConstraints gbc3 = new GridBagConstraints();
         gbc3.gridx = 2;
         gbc3.gridy = 0;
-        panel.add(jb3, gbc3); //gdc reset
+        panel.add(jb3, gbc3);
 
         GridBagConstraints gbc4 = new GridBagConstraints();
         gbc4.gridx = 0;
         gbc4.gridy = 2;
         gbc4.gridwidth = 2; //the name is very long, the element are spaced
         gbc4.ipady = 25; //set additional size
-        panel.add(jb4, gbc4); //gdc reset
+        panel.add(jb4, gbc4);
 
 
         GridBagConstraints gbc5 = new GridBagConstraints();
         gbc5.gridx = 0;
         gbc5.gridy = 3;
         gbc4.gridwidth = 3;
-        panel.add(jb5, gbc5); //gdc reset
+        panel.add(jb5, gbc5);
 
         GridBagConstraints gbc6 = new GridBagConstraints();
         gbc6.fill = GridBagConstraints.HORIZONTAL; //fill it all the space assigned
         gbc6.gridx = 0;
         gbc6.gridy = 4;
         gbc6.gridwidth = 3;
-        panel.add(jb6, gbc6); //gdc reset
+        panel.add(jb6, gbc6);
 
         GridBagConstraints gbc7 = new GridBagConstraints();
         gbc7.gridx = 0;
@@ -96,7 +96,7 @@ public class GridBagLayoutExample {
         gbc7.gridwidth = 3;
         //gbc7.gridheight = 3;
         gbc7.anchor = GridBagConstraints.LAST_LINE_END;//placed in the left most position. if not specified, the anchor is set to CENTER
-        panel.add(jb7, gbc7); //gdc reset
+        panel.add(jb7, gbc7);
         
 
         //add panel to the frame

@@ -6,7 +6,7 @@ import javax.swing.*;
 class JsplitPane_example extends JFrame {
 
     // frame
-    static JFrame f;
+    static JFrame jFrame;
 
     // text areas
     static JTextArea t1, t2;
@@ -15,10 +15,10 @@ class JsplitPane_example extends JFrame {
     public static void main(String[] args)
     {
         // create a new frame
-        f = new JFrame("frame");
+        jFrame = new JFrame("frame");
 
-        // create a object
-        JsplitPane_example s = new JsplitPane_example();
+        //set behaviour on close
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // create a panel
         JPanel p1 = new JPanel();
@@ -40,11 +40,11 @@ class JsplitPane_example extends JFrame {
         JSplitPane sl = new JSplitPane(SwingConstants.HORIZONTAL, p1, p2);
 
         // add panel
-        f.add(sl);
+        jFrame.add(sl);
 
         // set the size of frame
-        f.setSize(300, 300);
+        jFrame.setSize(300, 300);
 
-        f.show();
+        jFrame.show();
     }
 }

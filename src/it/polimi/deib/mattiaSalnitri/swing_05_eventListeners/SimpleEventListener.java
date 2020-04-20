@@ -62,9 +62,9 @@ public class SimpleEventListener {
         okButton.setActionCommand("command");
 
         //add the listen to the button
-        okButton.addActionListener(new CustomActionListener()); //<-- here i set the link to the event handler
+        //okButton.addActionListener(new CustomActionListener()); //<-- here i set the link to the event handler
         //listener supported for each swing element: https://docs.oracle.com/javase/tutorial/uiswing/events/eventsandcomponents.html
-        //okButton.addMouseListener(new CustomMouseListener());
+        okButton.addMouseListener(new CustomMouseListener());
 
         //add button to the panel
         panel.add(okButton);
@@ -96,6 +96,7 @@ public class SimpleEventListener {
         }
         public void mousePressed(MouseEvent e)
         {
+
             statusLabel.setText("Mouse pressed.");
         }
         public void mouseReleased(MouseEvent e)

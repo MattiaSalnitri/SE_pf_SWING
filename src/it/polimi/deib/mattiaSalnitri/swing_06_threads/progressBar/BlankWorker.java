@@ -9,13 +9,17 @@ import java.util.List;
 
 import javax.swing.SwingWorker;
 
-public class BlankWorker extends SwingWorker<Integer, String> {
+public class BlankWorker extends SwingWorker<Integer, String>
+    // two generics fro the swingWorker
+    //The first one represents the type of object returned when the worker has finished working.
+    //The second one represents the type of information that the worker will use to inform (update) the application with its progress.
+{
 
     @Override
-    protected Integer doInBackground() throws Exception {
+    protected Integer doInBackground() throws Exception {//that's a simulation for a (very) long task
         // Start
         publish("Start");
-        setProgress(1);
+        setProgress(1);//set the progress of the task, this is not linked with the generics
 
         try {
             Thread.sleep(3000);

@@ -3,7 +3,7 @@ package it.polimi.deib.mattiaSalnitri.swing_01;
 import javax.swing.*;
 
 /**
- * cretes an empty wsing JFrame
+ * creates an empty SWING JFrame
  */
 public class PrimoJframe {
 
@@ -13,7 +13,7 @@ public class PrimoJframe {
         try {
             UIManager.setLookAndFeel(
                     UIManager.getCrossPlatformLookAndFeelClassName());//metal -> cross platform, looks the same in all platforms
-                    //UIManager.getSystemLookAndFeelClassName() set the default of the platform -> this by default
+                    UIManager.getSystemLookAndFeelClassName();// set the default of the platform -> this by default
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

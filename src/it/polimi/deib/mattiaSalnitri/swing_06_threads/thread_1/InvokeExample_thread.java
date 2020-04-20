@@ -12,6 +12,8 @@ Publisher: O'Reilly
 //good, some are not!
 //
 
+import it.polimi.deib.mattiaSalnitri.swing_06_threads.thread_2.InvokeExample;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -26,15 +28,30 @@ import javax.swing.SwingUtilities;
 
 public class InvokeExample_thread {
 
-    //
+    //GUI elements
     private static JButton good = new JButton("Good");
     private static JButton bad = new JButton("Bad");
     private static JButton bad2 = new JButton("Bad2");
     private static JButton print = new JButton("print");
-
     private static JLabel resultLabel = new JLabel("Ready", JLabel.CENTER);
 
-    public static void main(String[] args) {
+    static InvokeExample_thread invokeExample_thread;
+
+    public static void main(String[] args)
+    {
+        //adds the creation of frame in the EDT
+        SwingUtilities.invokeLater(new Runnable() {//implements a thread with runnable
+            @Override
+            public void run()
+            {
+                invokeExample_thread = new InvokeExample_thread();
+            }
+        });
+
+    }
+
+    public InvokeExample_thread()
+    {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -54,6 +71,59 @@ public class InvokeExample_thread {
 
 
         // Listeners
+        print.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+
+                System.out.println("print");
+
+
+            }
+        });
+
+
+        //single thread
+        bad.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                resultLabel.setText("Working . . .");
+                setEnabled(false);
+
+                // We're going to do the same thing, but not in a separate
+                // thread.
+                try {
+                    Thread.sleep(5000); // Dispatch thread is starving!
+                } catch (InterruptedException ex) {
+                }
+
+                // Report the result.
+                resultLabel.setText("Ready");
+                setEnabled(true);
+            }
+        });
+
+
+        //using ETD as a worker
+        bad2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                resultLabel.setText("Working . . . ");
+                setEnabled(false);
+
+                // The wrong way to use invokeLater(). The runnable() shouldn't
+                // starve the dispatch thread.
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        try {
+                            Thread.sleep(5000); // Dispatch thread is starving!
+                        } catch (InterruptedException ex) {
+                        }
+
+                        resultLabel.setText("Ready");
+                        setEnabled(true);
+                    }
+                });
+            }
+        });
+
+        //using a worker
         good.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 resultLabel.setText("Working . . .");
@@ -82,55 +152,8 @@ public class InvokeExample_thread {
                 };
 
                 worker.start(); // So we don't hold up the dispatch thread.
-            }
-        });
-
-
-        print.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-
-                System.out.println("print");
-
-
-            }
-        });
-
-        bad.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                resultLabel.setText("Working . . .");
-                setEnabled(false);
-
-                // We're going to do the same thing, but not in a separate
-                // thread.
-                try {
-                    Thread.sleep(5000); // Dispatch thread is starving!
-                } catch (InterruptedException ex) {
-                }
-
-                // Report the result.
-                resultLabel.setText("Ready");
-                setEnabled(true);
-            }
-        });
-
-        bad2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                resultLabel.setText("Working . . . ");
-                setEnabled(false);
-
-                // The wrong way to use invokeLater(). The runnable() shouldn't
-                // starve the dispatch thread.
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        try {
-                            Thread.sleep(5000); // Dispatch thread is starving!
-                        } catch (InterruptedException ex) {
-                        }
-
-                        resultLabel.setText("Ready");
-                        setEnabled(true);
-                    }
-                });
+                //the problem here is the communication with the GUI while the thread is running
+                //special thread-> SwingWorker
             }
         });
 

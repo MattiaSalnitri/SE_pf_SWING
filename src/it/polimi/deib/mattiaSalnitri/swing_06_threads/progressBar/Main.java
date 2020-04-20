@@ -9,8 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class Main {
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
+    public static void main(final String[] args)
+    {
+        //adds the creation of frame in the EDT
+        SwingUtilities.invokeLater(new Runnable() {//implements a thread with runnable
             @Override
             public void run() {
                 final Application frame = new Application();

@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  */
 public class MainPoliceFrame
 {
-    //the alar hanler isnatnce
+    //the alarm handler instance
     private AlarmHandler ah;
 
     public static void main(String[] args)
